@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ديوانية الطاولة</title>
+<!-- ============ عدّل هذا الجزء فقط ============ -->
+<script>
+window.DIWANIYA = {
+  SUPABASE_URL: "https://vdrvmhbtvxggzaobvucz.supabase.co",
+  SUPABASE_KEY: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcnZtaGJ0dnhnZ3phb2J2dWN6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0MDI4MTQsImV4cCI6MjEwODk3ODgxNH0.3WOkpoZu1Y7d7ZCnZUNo2MwLtho5LChsXViQBwBInS0"
+};
+</script>
+<meta property="og:image" content="https://abinfahad01.github.io/og.png">
+<!-- ============================================ -->
+<meta property="og:title" content="ديوانية الطاولة">
+<meta property="og:description" content="نتائج وترتيب الديوانية — الطاولة بالأرقام والجوكر">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://abinfahad01.github.io/">
+<meta name="description" content="نتائج وترتيب الديوانية — الطاولة بالأرقام والجوكر">
+<meta name="theme-color" content="#0c1814">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="الطاولة">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Reem+Kufi:wght@500;700&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --felt:#0c1814;--felt-2:#11241d;--felt-3:#18322a;--line:#24423a;--line-2:#33584b;
+  --ivory:#f1e8d4;--ivory-2:#e3d7bd;--gold:#d9b45a;--gold-deep:#b8913a;--green:#3fa57a;--red:#d06456;
+  --text:#ece6d6;--muted:#93a99d;--tile-red:#b5413a;--tile-blue:#2f5d8a;--tile-ink:#1d2a26;--tile-amber:#b86a14;
+  --r-lg:18px;--r-md:12px;
+  --kufi:'Reem Kufi','IBM Plex Sans Arabic',Tahoma,serif;
+  --sans:'IBM Plex Sans Arabic',system-ui,-apple-system,'Segoe UI',Tahoma,sans-serif;
+  color-scheme:dark;
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+}
+/* التطبيق داكن في الوضعين حسب هوية الديوانية */
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--felt:#0c1814;--felt-2:#11241d;--felt-3:#18322a;--text:#ece6d6;--muted:#93a99d;color-scheme:dark}}
+:root[data-theme="dark"]{--felt:#0c1814;--felt-2:#11241d;--felt-3:#18322a;--text:#ece6d6;--muted:#93a99d;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px);height:100%}
+*{box-sizing:border-box}
+body{margin:0;min-height:100%;color:var(--text);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;-webkit-tap-highlight-color:transparent;
+  background:radial-gradient(1200px 600px at 85% -10%,rgba(63,165,122,.10),transparent 60%),radial-gradient(900px 500px at 0% 110%,rgba(217,180,90,.06),transparent 60%),var(--felt);background-color:var(--felt);background-attachment:fixed}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:rgba(12,24,20,.95)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;cursor:pointer}
+input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px;border-radius:6px}
+.muted{color:var(--muted)}.small{font-size:13px}.gold-t{color:var(--gold)}
+.grow{flex:1;min-width:0;display:flex;flex-direction:column}
+.num{font-variant-numeric:tabular-nums;font-weight:600;direction:ltr;unicode-bidi:isolate}
+.pos{color:var(--green)}.neg{color:var(--red)}
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;padding:10px 16px;background:rgba(12,24,20,.9);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--kufi);font-size:20px;color:var(--ivory)}
+.side{display:none}
+.content{padding:18px 16px 110px;max-width:1100px;margin:0 auto}
+.bottom-nav{position:fixed;bottom:0;left:0;right:0;z-index:20;display:grid;grid-template-columns:repeat(5,1fr);padding:6px 4px calc(6px + env(safe-area-inset-bottom,0px));background:rgba(14,28,23,.97);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-top:1px solid var(--line)}
+.bottom-nav a{display:flex;flex-direction:column;align-items:center;gap:2px;padding:6px 0;font-size:11.5px;color:var(--muted);border-radius:10px}
+.bottom-nav a.on{color:var(--gold)}
+.nav-ic{font-size:19px;line-height:1;width:22px;text-align:center}
+@media (min-width:900px){
+  .shell{display:grid;grid-template-columns:240px 1fr}
+  .topbar,.bottom-nav{display:none}
+  .side{display:flex;flex-direction:column;gap:24px;position:sticky;top:0;height:100vh;padding:24px 16px;border-left:1px solid var(--line);background:rgba(17,36,29,.55)}
+  .side nav{display:flex;flex-direction:column;gap:2px}
+  .side-link{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:var(--r-md);color:var(--muted)}
+  .side-link:hover{background:var(--felt-3);color:var(--text)}
+  .side-link.on{background:var(--felt-3);color:var(--gold);box-shadow:inset -3px 0 0 var(--gold)}
+  .side-foot{margin-top:auto;display:flex;flex-direction:column;gap:8px;align-items:flex-start}
+  .content{padding:32px 36px 48px}
+}
+.pill{font-size:13px;padding:4px 12px;border:1px solid var(--gold-deep);color:var(--gold);border-radius:999px}
+.tile{--tc:var(--tile-ink);display:inline-grid;place-items:center;background:linear-gradient(180deg,#f7f0df 0%,var(--ivory) 55%,var(--ivory-2) 100%);color:var(--tc);border-radius:9px;font-weight:700;font-variant-numeric:tabular-nums;box-shadow:0 1px 0 rgba(255,255,255,.6) inset,0 -2px 0 rgba(0,0,0,.12) inset,0 3px 0 #b9ab8c,0 5px 10px rgba(0,0,0,.35);flex-shrink:0;line-height:1;direction:ltr;white-space:nowrap}
+.t-red{--tc:var(--tile-red)}.t-blue{--tc:var(--tile-blue)}.t-ink{--tc:var(--tile-ink)}.t-amber{--tc:var(--tile-amber)}
+.tile-sm{min-width:30px;height:38px;padding:0 6px;font-size:16px;border-radius:7px}
+.tile-md{min-width:40px;height:52px;padding:0 8px;font-size:20px}
+.tile-lg{min-width:56px;height:72px;padding:0 10px;font-size:26px;border-radius:11px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;padding:0 18px;border-radius:var(--r-md);border:1px solid transparent;font-weight:600;font-size:15px;white-space:nowrap;transition:transform .08s ease}
+.btn:active{transform:translateY(1px)}.btn:disabled{opacity:.45;cursor:not-allowed}
+.btn.gold{background:linear-gradient(180deg,#e6c56c,var(--gold-deep));color:#1a1406;box-shadow:0 2px 0 #7e6223}
+.btn.ghost{background:transparent;border-color:var(--line-2);color:var(--text)}
+.btn.ghost:hover{background:var(--felt-3)}
+.btn.danger{color:var(--red);border-color:rgba(208,100,86,.4)}
+.btn.sm{min-height:36px;padding:0 12px;font-size:13.5px}.btn.wide{width:100%}
+.icon-btn{background:none;border:0;padding:6px 8px;border-radius:8px;color:var(--muted);font-size:16px}
+.icon-btn:hover{background:var(--felt-3);color:var(--text)}
+.link{background:none;border:0;padding:0;color:var(--gold);font-size:14px}
+input,select{width:100%;min-height:46px;padding:0 14px;background:var(--felt-2);border:1px solid var(--line-2);border-radius:var(--r-md);font-size:16px;color:var(--text)}
+input:focus,select:focus{border-color:var(--gold);outline:none}
+.field{display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.check{display:flex;gap:10px;align-items:center;font-size:14px;margin:6px 0}
+.check input{width:20px;min-height:20px;accent-color:var(--gold)}
+.form-grid{display:grid;gap:14px}
+@media (min-width:640px){.form-grid.two{grid-template-columns:1fr 1fr;align-items:end}}
+.inline-form{display:flex;gap:10px}.inline-form input{flex:1}
+.page{display:flex;flex-direction:column;gap:18px}
+.page.narrow{max-width:640px}
+.page-title{font-family:var(--kufi);font-weight:700;font-size:26px;margin:0;color:var(--ivory);line-height:1.3}
+.page-head{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.block{display:flex;flex-direction:column;gap:12px}
+.block-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.block-title{font-family:var(--kufi);font-weight:500;font-size:18px;margin:0;color:var(--ivory-2)}
+.day-title{font-size:14px;color:var(--gold);margin:0;font-weight:600}
+.banner{padding:10px 14px;border-radius:var(--r-md);background:var(--felt-3);border:1px solid var(--line-2);font-size:14px}
+.banner.err{border-color:rgba(208,100,86,.5);background:rgba(181,65,58,.12)}
+.hero{position:relative;overflow:hidden;padding:22px 20px;border-radius:var(--r-lg);background:repeating-linear-gradient(45deg,rgba(255,255,255,.012) 0 2px,transparent 2px 6px),linear-gradient(160deg,#1a3a2f 0%,#10261e 70%);border:1px solid rgba(217,180,90,.35);box-shadow:inset 0 0 0 4px rgba(12,24,20,.6),inset 0 0 0 5px rgba(217,180,90,.18)}
+.hero-top{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:flex-end}
+.hero-season{margin:0;color:var(--gold);font-size:14px}
+.hero-title{font-family:var(--kufi);font-size:clamp(34px,8vw,52px);line-height:1.15;margin:4px 0;color:var(--ivory)}
+.hero-sub{margin:0;color:var(--muted);max-width:46ch}
+.rack{display:flex;gap:6px;padding:10px 12px 14px;border-radius:12px;background:linear-gradient(180deg,#3a2a17,#2a1e10);box-shadow:inset 0 2px 4px rgba(0,0,0,.5)}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}
+.stats-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+.stat{background:var(--felt-2);padding:12px 14px;display:flex;flex-direction:column;gap:2px}
+.stat-v{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;color:var(--ivory)}
+.stat-v.gold{color:var(--gold)}.stat-v.pos{color:var(--green)}.stat-v.neg{color:var(--red)}
+.stat-l{font-size:12.5px;color:var(--muted)}
+.board{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.board li{display:flex;align-items:center;gap:12px;padding:10px 12px;background:var(--felt-2);border:1px solid var(--line);border-radius:var(--r-md)}
+.board li.lead{border-color:rgba(217,180,90,.55);background:linear-gradient(270deg,rgba(217,180,90,.10),var(--felt-2) 60%)}
+.board-name{flex:1;min-width:0;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.board-cell{display:flex;flex-direction:column;align-items:center;min-width:46px}
+.board-cell b{font-variant-numeric:tabular-nums;direction:ltr}
+.board-cell small{font-size:11px;color:var(--muted)}
+.board-cell.hl b{color:var(--gold)}.board-cell.pos b{color:var(--green)}.board-cell.neg b{color:var(--red)}
+@media (max-width:520px){.hide-sm{display:none!important}}
+.champion{display:flex;align-items:center;gap:14px;padding:16px;border-radius:var(--r-lg);background:linear-gradient(160deg,#1d3d31,#10261e);border:1px solid rgba(217,180,90,.45)}
+.champion strong{font-family:var(--kufi);font-size:26px;color:var(--ivory);line-height:1.2}
+.crown{font-size:34px;color:var(--gold)}
+.list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.row-link{display:flex;align-items:center;gap:12px;padding:12px 14px;background:var(--felt-2);border:1px solid var(--line);border-radius:var(--r-md)}
+.row-link:hover{border-color:var(--line-2)}
+.date-chip{font-size:12.5px;padding:3px 9px;border-radius:6px;background:var(--felt-3);color:var(--ivory-2);white-space:nowrap}
+.time{font-variant-numeric:tabular-nums;color:var(--gold);font-weight:600;min-width:64px;font-size:14px}
+.badge{font-size:12.5px;padding:4px 10px;border-radius:999px;white-space:nowrap;font-weight:600}
+.badge.live{background:rgba(63,165,122,.15);color:var(--green);border:1px solid rgba(63,165,122,.4)}
+.badge.win{background:rgba(217,180,90,.12);color:var(--gold);border:1px solid rgba(217,180,90,.35)}
+.live-item{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:var(--r-md);background:var(--felt-2);border:1px solid rgba(63,165,122,.45);flex-wrap:wrap}
+.pulse{width:10px;height:10px;border-radius:50%;background:var(--green);animation:pulse 1.8s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(63,165,122,.6)}70%{box-shadow:0 0 0 10px rgba(63,165,122,0)}100%{box-shadow:0 0 0 0 rgba(63,165,122,0)}}
+.grid-cards{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:8px}
+.card{display:flex;align-items:center;gap:8px;background:var(--felt-2);border:1px solid var(--line);border-radius:var(--r-md);padding-left:10px}
+.card.active{border-color:rgba(63,165,122,.45)}
+.card-main{flex:1;min-width:0;display:flex;align-items:center;gap:12px;padding:12px 14px}
+.row-actions{display:flex;gap:6px}
+.scope-bar{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.scope-bar select{width:auto;min-width:160px;flex:0 1 220px}
+.seg{display:inline-flex;background:var(--felt-2);border:1px solid var(--line-2);border-radius:var(--r-md);padding:3px;gap:2px;max-width:100%;overflow-x:auto}
+.seg button{border:0;background:none;padding:7px 12px;border-radius:9px;font-size:13.5px;color:var(--muted);white-space:nowrap}
+.seg button.on{background:var(--felt-3);color:var(--gold);box-shadow:0 0 0 1px rgba(217,180,90,.35)}
+.pick-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px}
+.pick{display:flex;align-items:center;gap:10px;padding:10px 12px;background:var(--felt-2);border:1px solid var(--line-2);border-radius:var(--r-md);text-align:start;min-height:58px}
+.pick span:last-child{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+.pick.on{border-color:var(--gold);background:rgba(217,180,90,.10)}
+.winner-banner{display:flex;align-items:center;gap:16px;padding:16px 18px;border-radius:var(--r-lg);background:linear-gradient(160deg,rgba(217,180,90,.18),rgba(217,180,90,.04));border:1px solid rgba(217,180,90,.5)}
+.winner-banner>div{display:flex;flex-direction:column}
+.winner-banner strong{font-family:var(--kufi);font-size:28px;color:var(--ivory);line-height:1.25}
+.scoreboard{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
+.scoreboard li{display:grid;grid-template-columns:auto minmax(70px,1fr) 2fr auto;align-items:center;gap:12px;padding:10px 12px;background:var(--felt-2);border:1px solid var(--line);border-radius:var(--r-md)}
+.scoreboard li.won{border-color:var(--gold)}
+.sb-name{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.sb-total{font-size:22px;font-weight:700;font-variant-numeric:tabular-nums;min-width:56px;color:var(--ivory);direction:ltr;text-align:left}
+.sb-total.neg{color:var(--red)}
+.bar{height:8px;background:var(--felt);border-radius:99px;overflow:hidden;border:1px solid var(--line)}
+.bar span{display:block;height:100%;background:linear-gradient(270deg,var(--green),var(--gold));border-radius:99px;transition:width .4s ease}
+.entry{padding:16px;border-radius:var(--r-lg);background:var(--felt-2);border:1px solid var(--line-2)}
+.round-form{display:flex;flex-direction:column;gap:12px}
+.step{margin:0;font-size:14px;color:var(--gold);font-weight:600}
+.loser-list{display:flex;flex-direction:column;gap:8px}
+.loser-row{display:grid;grid-template-columns:minmax(70px,1fr) minmax(100px,1.2fr) auto 56px;gap:8px;align-items:center;padding:8px 10px;background:var(--felt);border:1px solid var(--line);border-radius:var(--r-md)}
+.loser-name{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tiles-in{text-align:center;min-height:44px;font-weight:700;font-size:18px;direction:ltr}
+.joker{display:flex;align-items:center;gap:4px;background:var(--felt-2);border:1px solid var(--line-2);border-radius:var(--r-md);padding:2px}
+.joker button{width:34px;height:38px;border:0;background:var(--felt-3);border-radius:8px;font-size:18px}
+.joker span{min-width:44px;text-align:center;font-size:13px}
+.pot{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:10px 12px;border-radius:var(--r-md);background:rgba(217,180,90,.08);border:1px dashed rgba(217,180,90,.45);font-weight:600}
+@media (max-width:480px){
+  .loser-row{grid-template-columns:1fr auto}
+  .loser-row .pts{grid-row:1;grid-column:2}
+  .scoreboard li{grid-template-columns:auto 1fr auto}
+  .scoreboard .bar{grid-column:1/-1;grid-row:2}
+}
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:var(--r-md);background:var(--felt-2)}
+table.rounds{width:100%;border-collapse:collapse;font-size:14.5px}
+.rounds th,.rounds td{padding:10px 12px;text-align:center;border-bottom:1px solid var(--line);white-space:nowrap}
+.rounds th{font-weight:600;color:var(--muted);font-size:13px;background:var(--felt-3)}
+.rounds td.rn{color:var(--muted)}
+.rounds td.w{background:rgba(63,165,122,.08)}
+.rounds tfoot td{border-bottom:0;background:var(--felt-3);font-size:16px}
+.rounds .jk{display:block;font-size:11px;color:var(--muted)}
+.rounds .acts{display:flex;gap:2px;justify-content:center}
+.report-table td:nth-child(2){text-align:start;font-weight:600}
+.cmp-pick{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center}
+.vs{font-family:var(--kufi);color:var(--gold)}
+.h2h{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;padding:18px;border-radius:var(--r-lg);background:var(--felt-2);border:1px solid var(--line-2);text-align:center}
+.h2h-side b{display:block;font-size:44px;line-height:1;color:var(--gold)}
+.h2h-side span{font-weight:600}
+.h2h-mid{display:flex;flex-direction:column;color:var(--muted);font-size:13px}
+.cmp{display:flex;flex-direction:column;border:1px solid var(--line);border-radius:var(--r-md);overflow:hidden}
+.cmp-row{display:grid;grid-template-columns:1fr 1.3fr 1fr;align-items:center;text-align:center;padding:10px 8px;background:var(--felt-2);border-bottom:1px solid var(--line)}
+.cmp-row:last-child{border-bottom:0}
+.cmp-l{font-size:13px;color:var(--muted)}
+.cmp-v{font-weight:700;direction:ltr}.cmp-v.win{color:var(--gold)}
+.profile-head{display:flex;align-items:center;gap:16px}
+.chart-box{background:var(--felt-2);border:1px solid var(--line);border-radius:var(--r-md);padding:10px;overflow-x:auto}
+.chart-box svg{display:block;width:100%;height:auto;min-width:320px}
+.legend{display:flex;flex-wrap:wrap;gap:12px;font-size:12.5px;padding:6px 4px 0}
+.legend span{display:inline-flex;align-items:center;gap:6px}
+.legend i{width:12px;height:3px;border-radius:2px;display:inline-block}
+.awards{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:8px}
+.awards>div{display:flex;flex-direction:column;gap:2px;padding:12px 14px;background:var(--felt-2);border:1px solid var(--line);border-radius:var(--r-md)}
+.awards b{font-size:18px;color:var(--ivory)}
+.rules{margin:0;padding-right:20px;display:flex;flex-direction:column;gap:6px;color:var(--ivory-2)}
+.empty{display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;padding:36px 16px;border:1px dashed var(--line-2);border-radius:var(--r-lg)}
+.empty h3{margin:0;font-weight:600;font-size:17px}
+.empty-tiles{display:flex;gap:6px;transform:rotate(-4deg)}
+.loader{display:flex;gap:8px;justify-content:center;padding:60px 0}
+.loader .tile{animation:bob 1s ease-in-out infinite}
+.loader .tile:nth-child(2){animation-delay:.15s}.loader .tile:nth-child(3){animation-delay:.3s}
+@keyframes bob{50%{transform:translateY(-8px)}}
+.more-item{display:flex;align-items:center;gap:14px;padding:16px;background:var(--felt-2);border:1px solid var(--line);border-radius:var(--r-md);font-weight:600}
+.modal-back{position:fixed;inset:0;z-index:50;background:rgba(4,10,8,.7);display:flex;align-items:flex-end;justify-content:center}
+.modal{width:100%;max-width:560px;max-height:92vh;overflow-y:auto;background:var(--felt-2);border:1px solid var(--line-2);border-radius:20px 20px 0 0;padding:18px 18px calc(18px + env(safe-area-inset-bottom,0px));display:flex;flex-direction:column;gap:14px;animation:rise .2s ease}
+.modal-head{display:flex;align-items:center;justify-content:space-between}
+.modal-head h2{margin:0;font-family:var(--kufi);font-weight:500;font-size:20px}
+.modal-actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:space-between}
+@media (min-width:640px){.modal-back{align-items:center}.modal{border-radius:20px}}
+@keyframes rise{from{transform:translateY(24px);opacity:.6}}
+.toast{position:fixed;bottom:calc(84px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);z-index:60;background:var(--felt-3);border:1px solid var(--gold-deep);color:var(--ivory);padding:10px 16px;border-radius:12px;font-size:14px;max-width:90vw}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div id="root"><div class="loader"><span class="tile tile-sm t-red">1</span><span class="tile tile-sm t-blue">2</span><span class="tile tile-sm t-amber">3</span></div></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.3.1/umd/react.production.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.3.1/umd/react-dom.production.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/htm@3.1.1/dist/htm.umd.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+(function(){
+'use strict';
+const {useState,useEffect,useMemo,useRef,createContext,useContext}=React;
+const html=htm.bind(React.createElement);
+
+/* ================= أدوات التنسيق ================= */
+const LOC='ar-SA-u-nu-latn-ca-gregory';
+const dF=new Intl.DateTimeFormat(LOC,{day:'numeric',month:'long',year:'numeric'});
+const sF=new Intl.DateTimeFormat(LOC,{day:'numeric',month:'short'});
+const tF=new Intl.DateTimeFormat(LOC,{hour:'numeric',minute:'2-digit'});
+const fmtDate=d=>dF.format(new Date(d));
+const fmtShort=d=>sF.format(new Date(d));
+const fmtTime=d=>tF.format(new Date(d));
+const fmtDT=d=>fmtDate(d)+' — '+fmtTime(d);
+const fmtNum=n=>new Intl.NumberFormat('en-US').format(Math.round(n||0));
+const fmtSigned=n=>n>0?'+'+fmtNum(n):fmtNum(n);
+const fmtPct=n=>Math.round((n||0)*100)+'%';
+const fmtAvg=n=>Number.isFinite(n)?n.toFixed(1):'0';
+const toneOf=n=>n>0?'pos':n<0?'neg':'';
+const uid=()=>(crypto.randomUUID?crypto.randomUUID():String(Math.random()).slice(2)+Date.now()).replace(/-/g,'').slice(0,20);
+const pad=x=>String(x).padStart(2,'0');
+const toLocalInput=iso=>{const d=new Date(iso);return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())+'T'+pad(d.getHours())+':'+pad(d.getMinutes())};
+const today=()=>{const d=new Date();return d.getFullYear()+'-'+pad(d.getMonth()+1)+'-'+pad(d.getDate())};
+const arDigits=s=>s.replace(/[٠-٩]/g,c=>String('٠١٢٣٤٥٦٧٨٩'.indexOf(c))).replace(/\D/g,'');
+const byDateAsc=(a,b)=>new Date(a.played_at)-new Date(b.played_at);
+const byDateDesc=(a,b)=>new Date(b.played_at)-new Date(a.played_at);
+
+/* ================= محرك الاحتساب =================
+   - الفائز بالجولة يأخذ مجموع أحجار الخاسرين بالموجب
+   - الخاسر عليه مجموع أحجاره بالسالب، والجوكر = joker (30)
+   - فائز الجلسة أول من يصل target (300)؛ عند الوصول المتزامن يفوز الأعلى ثم فائز الجولة */
+function computeRound(winnerId,losers,joker){
+  let pot=0;const scores={};
+  losers.forEach(l=>{const t=Math.max(0,Math.round(l.tiles||0)),j=Math.max(0,Math.round(l.jokers||0));const pen=t+j*joker;pot+=pen;scores[l.id]={tiles:t,jokers:j,points:pen?-pen:0}});
+  scores[winnerId]={tiles:0,jokers:0,points:pot};
+  return scores;
+}
+function evaluateSession(s){
+  const totals={};(s.players||[]).forEach(p=>totals[p]=0);
+  const rounds=[...(s.rounds||[])].sort((a,b)=>a.no-b.no);
+  let winner=null,at=null;const progression=[];
+  for(const r of rounds){
+    for(const [pid,sc] of Object.entries(r.scores||{}))totals[pid]=(totals[pid]||0)+sc.points;
+    progression.push({no:r.no,totals:{...totals}});
+    if(!winner){
+      const reached=Object.entries(totals).filter(([,v])=>v>=s.target);
+      if(reached.length){reached.sort((a,b)=>b[1]-a[1]||(a[0]===r.winner?-1:b[0]===r.winner?1:0));winner=reached[0][0];at=r.no}
+    }
+  }
+  return {totals,progression,winner,at};
+}
+function finalize(s){
+  const ev=evaluateSession(s);
+  return {...s,status:ev.winner?'finished':'active',winner_id:ev.winner,decided_round:ev.at,finished_at:ev.winner?(s.finished_at||new Date().toISOString()):null};
+}
+
+/* ================= الإحصائيات ================= */
+function flatten(sessions){
+  const rounds=[],scores=[];
+  sessions.forEach(s=>(s.rounds||[]).forEach(r=>{
+    const rid=s.id+':'+r.id;
+    rounds.push({id:rid,session_id:s.id,no:r.no,winner:r.winner});
+    Object.entries(r.scores||{}).forEach(([pid,sc])=>scores.push({round_id:rid,session_id:s.id,player_id:pid,points:sc.points,tiles:sc.tiles,jokers:sc.jokers}));
+  }));
+  return {rounds,scores};
+}
+function scope(data,sc){
+  sc=sc||{};const days=sc.period&&sc.period!=='all'?Number(sc.period):null;const since=days?Date.now()-days*864e5:null;
+  const sessions=data.sessions.filter(s=>sc.seasonId?s.season_id===sc.seasonId:true).filter(s=>since?new Date(s.played_at).getTime()>=since:true).sort(byDateAsc);
+  const f=flatten(sessions);
+  return {sessions,rounds:f.rounds,scores:f.scores};
+}
+function playerStats(player,sd){
+  const rmap=new Map(sd.rounds.map(r=>[r.id,r]));
+  const mine=sd.scores.filter(s=>s.player_id===player.id);
+  let positive=0,negative=0,roundWins=0,best=null,worst=null;const sTot=new Map();
+  mine.forEach(s=>{
+    if(s.points>0)positive+=s.points;else negative+=s.points;
+    const r=rmap.get(s.round_id);if(r&&r.winner===player.id)roundWins++;
+    best=best===null?s.points:Math.max(best,s.points);worst=worst===null?s.points:Math.min(worst,s.points);
+    sTot.set(s.session_id,(sTot.get(s.session_id)||0)+s.points);
+  });
+  const ms=sd.sessions.filter(s=>(s.players||[]).includes(player.id));
+  const fin=ms.filter(s=>s.status==='finished'&&s.winner_id);
+  const wins=fin.filter(s=>s.winner_id===player.id).length;
+  let cur=0,longest=0;fin.forEach(s=>{if(s.winner_id===player.id){cur++;longest=Math.max(longest,cur)}else cur=0});
+  const rp=mine.length;
+  return {player,sessions:ms.length,finished:fin.length,wins,losses:fin.length-wins,winRate:fin.length?wins/fin.length:0,
+    rounds:rp,roundWins,roundWinRate:rp?roundWins/rp:0,positive,negative,net:positive+negative,avg:rp?(positive+negative)/rp:0,
+    streak:cur,longest,best,worst,bestSession:sTot.size?Math.max(...sTot.values()):null,last:ms.length?ms[ms.length-1].played_at:null};
+}
+function allStats(data,sc,includeArchived){const sd=scope(data,sc);return data.players.filter(p=>includeArchived||!p.archived).map(p=>playerStats(p,sd))}
+function rank(stats,key){
+  return stats.filter(s=>s.sessions>0).sort((a,b)=>key==='wins'?(b.wins-a.wins||b.winRate-a.winRate||b.net-a.net):key==='winRate'?(b.winRate-a.winRate||b.wins-a.wins||b.net-a.net):(b.net-a.net||b.wins-a.wins));
+}
+function overview(data,sc){const sd=scope(data,sc);const fin=sd.sessions.filter(s=>s.status==='finished').length;return {sessions:sd.sessions.length,finished:fin,rounds:sd.rounds.length,biggest:sd.scores.reduce((m,s)=>Math.max(m,s.points),0)}}
+function progress(data,sc,ids){
+  const sd=scope(data,sc);const cum={},wins={};ids.forEach(i=>{cum[i]=0;wins[i]=0});const rows=[];
+  sd.sessions.forEach(s=>{
+    let any=false;(s.rounds||[]).forEach(r=>Object.entries(r.scores||{}).forEach(([pid,x])=>{if(pid in cum){cum[pid]+=x.points;any=true}}));
+    if(s.winner_id&&s.winner_id in wins){wins[s.winner_id]++;any=true}
+    if(!any)return;const row={date:s.played_at};ids.forEach(i=>{row[i]=cum[i];row['w_'+i]=wins[i]});rows.push(row);
+  });
+  return rows;
+}
+function headToHead(data,sc,a,b){
+  const sd=scope(data,sc);const shared=sd.sessions.filter(s=>(s.players||[]).includes(a)&&(s.players||[]).includes(b));
+  const ids=new Set(shared.map(s=>s.id));const fin=shared.filter(s=>s.status==='finished'&&s.winner_id);
+  const rounds=sd.rounds.filter(r=>ids.has(r.session_id));let ap=0,bp=0;
+  sd.scores.forEach(s=>{if(!ids.has(s.session_id))return;if(s.player_id===a)ap+=s.points;if(s.player_id===b)bp+=s.points});
+  const aw=fin.filter(s=>s.winner_id===a).length,bw=fin.filter(s=>s.winner_id===b).length;
+  return {shared:shared.length,aWins:aw,bWins:bw,others:fin.length-aw-bw,rounds:rounds.length,aRW:rounds.filter(r=>r.winner===a).length,bRW:rounds.filter(r=>r.winner===b).length,aP:ap,bP:bp};
+}
+
+/* ================= السياق ================= */
+const Ctx=createContext(null);
+const useApp=()=>useContext(Ctx);
+const go=h=>{location.hash=h};
+
+/* ================= مكونات عامة ================= */
+const TC=['t-red','t-blue','t-ink','t-amber'];
+function Tile({v,c,size}){return html`<span className=${'tile tile-'+(size||'md')+' '+TC[((c||0)%4+4)%4]}>${v}</span>`}
+function Stat({label,value,tone}){return html`<div className="stat"><span className=${'stat-v '+(tone||'')}>${value}</span><span className="stat-l">${label}</span></div>`}
+function Empty({title,children}){return html`<div className="empty"><div className="empty-tiles"><${Tile} v="?" c=${3} size="sm"/><${Tile} v="?" c=${1} size="sm"/></div><h3>${title}</h3>${children}</div>`}
+function Seg({value,onChange,options}){return html`<div className="seg" role="tablist">${options.map(o=>html`<button key=${o.value} role="tab" aria-selected=${value===o.value} className=${value===o.value?'on':''} onClick=${()=>onChange(o.value)}>${o.label}</button>`)}</div>`}
+const PERIODS=[{value:'7',label:'آخر 7 أيام'},{value:'30',label:'آخر 30 يوماً'},{value:'all',label:'كل الوقت'}];
+function ScopeBar({seasonId,onSeason,period,onPeriod}){
+  const {data}=useApp();
+  return html`<div className="scope-bar">
+    <select value=${seasonId} onChange=${e=>onSeason(e.target.value)} aria-label="الموسم">
+      <option value="">كل المواسم</option>
+      ${[...data.seasons].sort((a,b)=>b.start_date.localeCompare(a.start_date)).map(s=>html`<option key=${s.id} value=${s.id}>${s.name}${s.is_active?' (الحالي)':''}</option>`)}
+    </select>
+    ${onPeriod&&html`<${Seg} value=${period} onChange=${onPeriod} options=${PERIODS}/>`}
+  </div>`;
+}
+function Modal({open,onClose,title,children}){
+  useEffect(()=>{if(!open)return;const h=e=>e.key==='Escape'&&onClose();window.addEventListener('keydown',h);return()=>window.removeEventListener('keydown',h)},[open]);
+  if(!open)return null;
+  return html`<div className="modal-back" onClick=${onClose}><div className="modal" role="dialog" aria-modal="true" aria-label=${title} onClick=${e=>e.stopPropagation()}>
+    <div className="modal-head"><h2>${title}</h2><button className="icon-btn" onClick=${onClose} aria-label="إغلاق">✕</button></div>${children}</div></div>`;
+}
+const COLORS=['#d9b45a','#3fa57a','#d06456','#5b8fc9','#c98fd1','#e0e0d0','#e39b4a','#6fc9c0'];
+function LineChart({rows,series,signed}){
+  const W=640,H=240,pl=8,pr=48,pt=12,pb=26;
+  if(rows.length<2)return null;
+  let min=0,max=0;rows.forEach(r=>series.forEach(s=>{min=Math.min(min,r[s.key]);max=Math.max(max,r[s.key])}));
+  if(min===max)max=min+1;const span=max-min;min-=span*.05;max+=span*.05;
+  const n=rows.length,x=i=>W-pr-(i*(W-pr-pl)/(n-1)),y=v=>pt+(max-v)*(H-pt-pb)/(max-min);
+  const ticks=[0,1,2,3,4].map(i=>min+(max-min)*i/4);
+  const lblIdx=[0,Math.floor((n-1)/2),n-1].filter((v,i,a)=>a.indexOf(v)===i);
+  return html`<div className="chart-box"><svg viewBox=${'0 0 '+W+' '+H} role="img" aria-label="رسم تطور المستوى">
+    ${ticks.map((t,i)=>html`<g key=${i}><line x1=${pl} x2=${W-pr} y1=${y(t)} y2=${y(t)} stroke="rgba(241,232,212,.07)"/><text x=${W-pr+6} y=${y(t)+4} fill="#93a99d" fontSize="11" textAnchor="start" style=${{direction:'ltr'}}>${Math.round(t)}</text></g>`)}
+    ${min<0&&max>0&&html`<line x1=${pl} x2=${W-pr} y1=${y(0)} y2=${y(0)} stroke="rgba(241,232,212,.25)" strokeDasharray="4 4"/>`}
+    ${lblIdx.map(i=>html`<text key=${'l'+i} x=${x(i)} y=${H-6} fill="#93a99d" fontSize="11" textAnchor="middle">${fmtShort(rows[i].date)}</text>`)}
+    ${series.map(s=>html`<g key=${s.key}><polyline fill="none" stroke=${s.color} strokeWidth="2.5" strokeLinejoin="round" strokeLinecap="round" points=${rows.map((r,i)=>x(i)+','+y(r[s.key])).join(' ')}/><circle cx=${x(n-1)} cy=${y(rows[n-1][s.key])} r="4" fill=${s.color}/></g>`)}
+  </svg>${series.length>1&&html`<div className="legend">${series.map(s=>html`<span key=${s.key}><i style=${{background:s.color}}></i>${s.label} <b className="num">${signed?fmtSigned(rows[n-1][s.key]):rows[n-1][s.key]}</b></span>`)}</div>`}</div>`;
+}
+
+/* ================= الصفحات ================= */
+function Dashboard(){
+  const {data,canEdit,activeSeason,name}=useApp();
+  const [period,setPeriod]=useState('all');const sid=activeSeason?activeSeason.id:undefined;
+  const board=useMemo(()=>rank(allStats(data,{seasonId:sid,period}),'wins'),[data,sid,period]);
+  const ov=useMemo(()=>overview(data,{seasonId:sid,period}),[data,sid,period]);
+  const leader=board[0];
+  const live=data.sessions.filter(s=>s.status==='active').sort(byDateDesc);
+  const recent=data.sessions.filter(s=>s.status==='finished').sort(byDateDesc).slice(0,5);
+  return html`<div className="page">
+    <section className="hero">
+      <div className="hero-top"><div>
+        <p className="hero-season">${activeSeason?activeSeason.name:'بدون موسم نشط'}</p>
+        <h1 className="hero-title">${leader?leader.player.name:'الطاولة جاهزة'}</h1>
+        <p className="hero-sub">${leader?`متصدّر الديوانية بـ ${leader.wins} ${leader.wins===1?'فوز':'انتصارات'} ونسبة ${fmtPct(leader.winRate)}`:'أضف اللاعبين وابدأ أول جلسة.'}</p>
+      </div>
+      ${leader&&html`<div className="rack" aria-hidden="true"><${Tile} v=${leader.wins} c=${3} size="lg"/><${Tile} v=${leader.longest} c=${0} size="lg"/><${Tile} v=${fmtSigned(leader.net)} c=${1} size="lg"/></div>`}</div>
+      <div className="hero-actions">${canEdit?html`<a href="#new-session" className="btn gold">ابدأ جلسة جديدة</a><a href="#players" className="btn ghost">أضف لاعباً</a>`:html`<a href="#login" className="btn ghost">دخول المشرف لتسجيل النتائج</a>`}</div>
+    </section>
+    ${live.length>0&&html`<section className="block"><h2 className="block-title">جلسات جارية</h2>
+      ${live.map(s=>{const ev=evaluateSession(s);const top=Object.entries(ev.totals).sort((a,b)=>b[1]-a[1])[0];
+        return html`<a key=${s.id} href=${'#session-'+s.id} className="live-item"><span className="pulse"></span>
+          <div className="grow"><strong>${s.players.map(name).join('، ')}</strong><span className="muted small">${(s.rounds||[]).length} جولة — ${fmtDT(s.played_at)}</span></div>
+          ${top&&html`<span className="muted small">${name(top[0])} ${fmtNum(top[1])}/${s.target}</span>`}<span className="btn sm gold">تابع</span></a>`})}
+    </section>`}
+    <section className="block"><div className="block-head"><h2 className="block-title">نظرة على ${activeSeason?'الموسم':'الديوانية'}</h2><${Seg} value=${period} onChange=${setPeriod} options=${PERIODS}/></div>
+      <div className="stats-row"><${Stat} label="جلسة" value=${ov.sessions}/><${Stat} label="جولة" value=${ov.rounds}/><${Stat} label="أعلى جولة" value=${fmtNum(ov.biggest)} tone="gold"/><${Stat} label="لاعب نشط" value=${board.length}/></div></section>
+    <section className="block"><div className="block-head"><h2 className="block-title">الترتيب</h2><a href="#leaderboard" className="link">الصدارة الكاملة</a></div>
+      ${board.length===0?html`<${Empty} title="لا توجد نتائج في هذه الفترة">${canEdit&&html`<a href="#new-session" className="btn gold sm">ابدأ جلسة</a>`}<//>`:html`<${Board} list=${board.slice(0,6)} hl="wins"/>`}</section>
+    <section className="block"><div className="block-head"><h2 className="block-title">آخر الجلسات</h2><a href="#sessions" className="link">كل الجلسات</a></div>
+      ${recent.length===0?html`<p className="muted">لا توجد جلسات منتهية بعد.</p>`:html`<ul className="list">${recent.map(s=>html`<li key=${s.id}><a className="row-link" href=${'#session-'+s.id}><span className="date-chip">${fmtShort(s.played_at)}</span><span className="grow">فاز <b className="gold-t">${name(s.winner_id)}</b></span><span className="muted small">${(s.rounds||[]).length} جولة</span></a></li>`)}</ul>`}</section>
+  </div>`;
+}
+function Board({list,hl}){
+  return html`<ol className="board">${list.map((s,i)=>html`<li key=${s.player.id} className=${i===0?'lead':''}>
+    <${Tile} v=${i+1} c=${i===0?3:i} size="sm"/><a href=${'#player-'+s.player.id} className="board-name">${s.player.name}</a>
+    <span className=${'board-cell '+(hl==='wins'?'hl':'')}><b>${s.wins}</b><small>فوز</small></span>
+    <span className=${'board-cell '+(hl==='winRate'?'hl':'')}><b>${fmtPct(s.winRate)}</b><small>نسبة</small></span>
+    <span className=${'board-cell '+(hl==='net'?'hl ':'')+toneOf(s.net)}><b>${fmtSigned(s.net)}</b><small>نقاط</small></span>
+    <span className="board-cell hide-sm"><b>${s.sessions}</b><small>جلسة</small></span></li>`)}</ol>`;
+}
+
+function Players(){
+  const {data,canEdit,act}=useApp();
+  const [nm,setNm]=useState('');const [edit,setEdit]=useState(null);const [en,setEn]=useState('');const [arch,setArch]=useState(false);
+  const stats=useMemo(()=>new Map(allStats(data,{},true).map(s=>[s.player.id,s])),[data]);
+  const list=data.players.filter(p=>!!p.archived===arch).sort((a,b)=>a.name.localeCompare(b.name,'ar'));
+  const archN=data.players.filter(p=>p.archived).length;
+  const add=e=>{e.preventDefault();const n=nm.trim();if(!n)return;
+    if(data.players.some(p=>!p.archived&&p.name.trim()===n))return act.toast('يوجد لاعب بنفس الاسم.');
+    act.addPlayer(n).then(()=>setNm(''))};
+  const remove=p=>{const has=(stats.get(p.id)||{}).sessions>0;
+    if(!confirm(has?p.name+' لديه سجل جلسات. سيُخفى من القوائم مع الاحتفاظ بكامل سجله. متابعة؟':'حذف '+p.name+' نهائياً؟'))return;
+    act.removePlayer(p.id,has).then(()=>setEdit(null))};
+  return html`<div className="page"><h1 className="page-title">اللاعبون</h1>
+    ${canEdit&&html`<form className="inline-form" onSubmit=${add}><input value=${nm} onChange=${e=>setNm(e.target.value)} placeholder="اسم اللاعب الجديد" maxLength="40" aria-label="اسم اللاعب"/><button className="btn gold" disabled=${!nm.trim()}>أضف اللاعب</button></form>`}
+    ${archN>0&&html`<button className="link small" style=${{alignSelf:'flex-start'}} onClick=${()=>setArch(!arch)}>${arch?'عرض اللاعبين الحاليين':'عرض المؤرشفين ('+archN+')'}</button>`}
+    ${list.length===0?html`<${Empty} title=${arch?'لا يوجد لاعبون مؤرشفون':'لا يوجد لاعبون بعد'}>${!arch&&html`<p className="muted">${canEdit?'اكتب اسم أول لاعب في الحقل أعلاه.':'المشرف يضيف اللاعبين.'}</p>`}<//>`:
+    html`<ul className="grid-cards">${list.map((p,i)=>{const s=stats.get(p.id)||{};return html`<li key=${p.id} className="card">
+      <a href=${'#player-'+p.id} className="card-main"><${Tile} v=${p.name.trim().charAt(0)} c=${i}/><div className="grow"><strong>${p.name}</strong><span className="muted small">${s.sessions||0} جلسة — ${s.wins||0} فوز — ${fmtPct(s.winRate)}</span></div><span className=${'num '+((s.net||0)>=0?'pos':'neg')}>${fmtSigned(s.net||0)}</span></a>
+      ${canEdit&&html`<div className="row-actions">${p.archived?html`<button className="btn ghost sm" onClick=${()=>act.restorePlayer(p.id)}>استعادة</button>`:html`<button className="btn ghost sm" onClick=${()=>{setEdit(p);setEn(p.name)}}>تعديل</button>`}</div>`}</li>`})}</ul>`}
+    <${Modal} open=${!!edit} onClose=${()=>setEdit(null)} title="تعديل اللاعب">
+      <label className="field"><span>الاسم</span><input value=${en} onChange=${e=>setEn(e.target.value)} maxLength="40"/></label>
+      <div className="modal-actions"><button className="btn gold" disabled=${!en.trim()} onClick=${()=>act.renamePlayer(edit.id,en.trim()).then(()=>setEdit(null))}>حفظ الاسم</button><button className="btn ghost danger" onClick=${()=>remove(edit)}>حذف اللاعب</button></div>
+    <//></div>`;
+}
+
+function PlayerProfile({id}){
+  const {data,name}=useApp();const [sid,setSid]=useState('');const [period,setPeriod]=useState('all');
+  const p=data.players.find(x=>x.id===id);
+  const sd=useMemo(()=>scope(data,{seasonId:sid||undefined,period}),[data,sid,period]);
+  const s=useMemo(()=>p?playerStats(p,sd):null,[p,sd]);
+  const rows=useMemo(()=>p?progress(data,{seasonId:sid||undefined,period},[p.id]):[],[data,p,sid,period]);
+  if(!p||!s)return html`<div className="page"><${Empty} title="اللاعب غير موجود"><a href="#players" className="btn ghost sm">عودة للاعبين</a><//></div>`;
+  const mine=sd.sessions.filter(x=>x.players.includes(p.id)).reverse().slice(0,12);
+  return html`<div className="page">
+    <div className="profile-head"><${Tile} v=${p.name.trim().charAt(0)} c=${3} size="lg"/><div><h1 className="page-title">${p.name}</h1><p className="muted small" style=${{margin:0}}>${p.archived?'مؤرشف — ':''}عضو منذ ${fmtDate(p.created_at)}${s.last?' — آخر جلسة '+fmtDate(s.last):''}</p></div></div>
+    <${ScopeBar} seasonId=${sid} onSeason=${setSid} period=${period} onPeriod=${setPeriod}/>
+    ${s.sessions===0?html`<${Empty} title="لا توجد جلسات في هذه الفترة"/>`:html`
+      <section className="block"><h2 className="block-title">الجلسات</h2><div className="stats-row">
+        <${Stat} label="جلسة" value=${s.sessions}/><${Stat} label="فوز" value=${s.wins} tone="gold"/><${Stat} label="خسارة" value=${s.losses}/>
+        <${Stat} label="نسبة الفوز" value=${fmtPct(s.winRate)} tone="gold"/><${Stat} label="السلسلة الحالية" value=${s.streak}/><${Stat} label="أطول سلسلة" value=${s.longest} tone="gold"/></div></section>
+      <section className="block"><h2 className="block-title">الجولات والنقاط</h2><div className="stats-row">
+        <${Stat} label="جولة" value=${s.rounds}/><${Stat} label="جولات فاز بها" value=${s.roundWins+' ('+fmtPct(s.roundWinRate)+')'}/>
+        <${Stat} label="نقاط إيجابية" value=${fmtSigned(s.positive)} tone="pos"/><${Stat} label="نقاط سلبية" value=${fmtNum(s.negative)} tone="neg"/>
+        <${Stat} label="الصافي" value=${fmtSigned(s.net)} tone=${toneOf(s.net)}/><${Stat} label="متوسط الجولة" value=${fmtAvg(s.avg)} tone=${toneOf(s.avg)}/>
+        <${Stat} label="أفضل جولة" value=${s.best!==null?fmtSigned(s.best):'—'} tone="pos"/><${Stat} label="أسوأ جولة" value=${s.worst!==null?fmtNum(s.worst):'—'} tone="neg"/>
+        <${Stat} label="أفضل جلسة" value=${s.bestSession!==null?fmtSigned(s.bestSession):'—'}/></div></section>
+      ${rows.length>1&&html`<section className="block"><h2 className="block-title">تطور الصافي التراكمي</h2><${LineChart} rows=${rows} series=${[{key:p.id,color:'#d9b45a',label:p.name}]} signed=${true}/></section>`}
+      <section className="block"><h2 className="block-title">آخر الجلسات</h2><ul className="list">${mine.map(x=>{const t=evaluateSession(x).totals[p.id]||0;const won=x.winner_id===p.id;
+        return html`<li key=${x.id}><a className="row-link" href=${'#session-'+x.id}><span className="date-chip">${fmtShort(x.played_at)}</span><span className="grow">${x.status==='active'?html`<span className="muted">جارية</span>`:won?html`<b className="gold-t">فاز</b>`:html`<span>خسر — الفائز ${name(x.winner_id)}</span>`}</span><span className=${'num '+toneOf(t)}>${fmtSigned(t)}</span></a></li>`})}</ul></section>`}
+  </div>`;
+}
+
+function Sessions(){
+  const {data,canEdit,activeSeason,name}=useApp();const [sid,setSid]=useState(activeSeason?activeSeason.id:'');
+  const list=useMemo(()=>data.sessions.filter(s=>sid?s.season_id===sid:true).sort(byDateDesc),[data,sid]);
+  const groups=useMemo(()=>{const m=new Map();list.forEach(s=>{const k=fmtDate(s.played_at);m.set(k,[...(m.get(k)||[]),s])});return [...m.entries()]},[list]);
+  return html`<div className="page"><div className="page-head"><h1 className="page-title">الجلسات</h1>${canEdit&&html`<a href="#new-session" className="btn gold">جلسة جديدة</a>`}</div>
+    <${ScopeBar} seasonId=${sid} onSeason=${setSid}/>
+    ${list.length===0?html`<${Empty} title="لا توجد جلسات">${canEdit&&html`<a href="#new-session" className="btn gold sm">ابدأ أول جلسة</a>`}<//>`:groups.map(([day,items])=>html`<section key=${day} className="block"><h2 className="day-title">${day}</h2><ul className="list">
+      ${items.map(s=>html`<li key=${s.id}><a href=${'#session-'+s.id} className="row-link"><span className="time">${fmtTime(s.played_at)}</span><div className="grow"><strong>${s.players.map(name).join('، ')}</strong><span className="muted small">${(s.rounds||[]).length} جولة${s.notes?' — '+s.notes:''}</span></div>${s.status==='active'?html`<span className="badge live">جارية</span>`:html`<span className="badge win">${name(s.winner_id)}</span>`}</a></li>`)}</ul></section>`)}
+  </div>`;
+}
+
+function NewSession(){
+  const {data,act,activeSeason}=useApp();
+  const [picked,setPicked]=useState([]);const [when,setWhen]=useState(toLocalInput(new Date().toISOString()));const [notes,setNotes]=useState('');const [busy,setBusy]=useState(false);
+  const players=data.players.filter(p=>!p.archived).sort((a,b)=>a.name.localeCompare(b.name,'ar'));const MAX=4;
+  const toggle=id=>setPicked(p=>p.includes(id)?p.filter(x=>x!==id):p.length>=MAX?p:[...p,id]);
+  if(players.length<2)return html`<div className="page"><${Empty} title="تحتاج لاعبَين على الأقل"><a href="#players" className="btn gold sm">أضف اللاعبين</a><//></div>`;
+  const start=()=>{setBusy(true);act.createSession(picked,new Date(when).toISOString(),notes).then(id=>{if(id)go('session-'+id);else setBusy(false)})};
+  return html`<div className="page narrow"><h1 className="page-title">جلسة جديدة</h1>
+    <p className="muted" style=${{margin:0}}>${activeSeason?html`تُسجَّل ضمن <b>${activeSeason.name}</b>.`:html`لا يوجد موسم نشط — <a href="#seasons" className="link">أنشئ موسماً</a> أو تابع بدون موسم.`} الفوز لأول من يصل ${data.settings.target} نقطة.</p>
+    <section className="block"><h2 className="block-title">اختر اللاعبين (${picked.length}/${MAX})</h2><div className="pick-grid">
+      ${players.map((p,i)=>{const on=picked.includes(p.id);return html`<button key=${p.id} type="button" className=${'pick '+(on?'on':'')} onClick=${()=>toggle(p.id)} aria-pressed=${on}><${Tile} v=${on?picked.indexOf(p.id)+1:p.name.trim().charAt(0)} c=${on?3:i} size="sm"/><span>${p.name}</span></button>`})}</div></section>
+    <section className="block form-grid two"><label className="field"><span>التاريخ والوقت</span><input type="datetime-local" value=${when} onChange=${e=>setWhen(e.target.value)}/></label>
+      <label className="field"><span>ملاحظة (اختياري)</span><input value=${notes} onChange=${e=>setNotes(e.target.value)} placeholder="مثال: ديوانية أبو فهد" maxLength="80"/></label></section>
+    <button className="btn gold wide" disabled=${picked.length<2||busy} onClick=${start}>${busy?'جارٍ البدء…':picked.length<2?'اختر لاعبَين على الأقل':'ابدأ الجلسة بـ '+picked.length+' لاعبين'}</button>
+  </div>`;
+}
+
+function RoundForm({players,joker,initWinner,init,label,onSubmit,onCancel}){
+  const {name}=useApp();
+  const blank=()=>Object.fromEntries(players.map(id=>[id,{tiles:'',jokers:0}]));
+  const [winner,setWinner]=useState(initWinner||'');const [d,setD]=useState(()=>init||blank());const [busy,setBusy]=useState(false);
+  const losers=players.filter(id=>id!==winner);
+  const inputs=losers.map(id=>({id,tiles:Number((d[id]||{}).tiles||0),jokers:(d[id]||{}).jokers||0}));
+  const preview=winner?computeRound(winner,inputs,joker):{};
+  const set=(id,patch)=>setD(x=>({...x,[id]:{...(x[id]||{tiles:'',jokers:0}),...patch}}));
+  const missing=losers.some(id=>((d[id]||{}).tiles==='')&&!((d[id]||{}).jokers));
+  const submit=async()=>{if(!winner)return;if(missing&&!confirm('بعض اللاعبين بدون أحجار مُدخلة وسيُحتسب لهم صفر. متابعة؟'))return;
+    setBusy(true);const ok=await onSubmit(winner,preview);setBusy(false);if(ok&&!init){setWinner('');setD(blank())}};
+  return html`<div className="round-form">
+    <p className="step">من أنهى أحجاره؟</p>
+    <div className="pick-grid">${players.map((id,i)=>html`<button key=${id} type="button" className=${'pick '+(winner===id?'on':'')} onClick=${()=>setWinner(id)} aria-pressed=${winner===id}><${Tile} v=${winner===id?'★':name(id).trim().charAt(0)} c=${winner===id?3:i} size="sm"/><span>${name(id)}</span></button>`)}</div>
+    ${winner&&html`<p className="step">الأحجار المتبقية مع الخاسرين</p><div className="loser-list">
+      ${losers.map(id=>{const x=d[id]||{tiles:'',jokers:0};const pts=(preview[id]||{}).points||0;return html`<div key=${id} className="loser-row">
+        <span className="loser-name">${name(id)}</span>
+        <input className="tiles-in" inputMode="numeric" placeholder="مجموع الأحجار" aria-label=${'مجموع أحجار '+name(id)} value=${x.tiles} onChange=${e=>set(id,{tiles:arDigits(e.target.value)})}/>
+        <div className="joker"><button type="button" onClick=${()=>set(id,{jokers:Math.max(0,x.jokers-1)})} aria-label="إنقاص جوكر">−</button><span title=${'كل جوكر = '+joker}>جوكر ${x.jokers}</span><button type="button" onClick=${()=>set(id,{jokers:Math.min(2,x.jokers+1)})} aria-label="زيادة جوكر">+</button></div>
+        <span className="num neg pts">${fmtNum(pts)}</span></div>`})}</div>
+      <div className="pot"><span>${name(winner)} يأخذ</span><${Tile} v=${'+'+fmtNum((preview[winner]||{}).points||0)} c=${3}/></div>`}
+    <div className="modal-actions"><button className="btn gold" disabled=${!winner||busy} onClick=${submit}>${busy?'جارٍ الحفظ…':label}</button>${onCancel&&html`<button className="btn ghost" onClick=${onCancel}>إلغاء</button>`}</div>
+  </div>`;
+}
+
+function SessionDetail({id}){
+  const {data,canEdit,act,name}=useApp();
+  const [editR,setEditR]=useState(null);const [meta,setMeta]=useState(null);
+  const s=data.sessions.find(x=>x.id===id);
+  const ev=useMemo(()=>s?evaluateSession(s):null,[s]);
+  if(!s||!ev)return html`<div className="page"><${Empty} title="الجلسة غير موجودة"><a href="#sessions" className="btn ghost sm">كل الجلسات</a><//></div>`;
+  const rounds=[...(s.rounds||[])].sort((a,b)=>a.no-b.no);
+  const ordered=[...s.players].sort((a,b)=>(ev.totals[b]||0)-(ev.totals[a]||0));
+  const fin=s.status==='finished';const season=data.seasons.find(x=>x.id===s.season_id);
+  const initFor=r=>Object.fromEntries(s.players.map(pid=>{const sc=(r.scores||{})[pid];return [pid,{tiles:sc&&pid!==r.winner?String(sc.tiles):'',jokers:sc?sc.jokers:0}]}));
+  const delRound=r=>{if(confirm('حذف الجولة '+r.no+'؟ سيُعاد احتساب المجاميع والفائز.'))act.deleteRound(s,r.id)};
+  return html`<div className="page">
+    <div className="page-head"><div><h1 className="page-title">جلسة ${fmtDT(s.played_at)}</h1><p className="muted small" style=${{margin:0}}>${season?season.name:'بدون موسم'} — الهدف ${s.target} — الجوكر ${s.joker}${s.notes?' — '+s.notes:''}</p></div>
+      ${canEdit&&html`<button className="btn ghost sm" onClick=${()=>setMeta({when:toLocalInput(s.played_at),notes:s.notes||'',season:s.season_id||''})}>تعديل الجلسة</button>`}</div>
+    ${fin&&html`<div className="winner-banner"><${Tile} v="★" c=${3} size="lg"/><div><span className="muted small">فائز الجلسة</span><strong>${name(s.winner_id)}</strong><span className="muted small">وصل ${fmtNum(ev.totals[s.winner_id])} نقطة في الجولة ${ev.at}</span></div></div>`}
+    <ol className="scoreboard">${ordered.map((pid,i)=>{const t=ev.totals[pid]||0;const pct=Math.max(0,Math.min(100,t/s.target*100));return html`<li key=${pid} className=${s.winner_id===pid?'won':''}><${Tile} v=${i+1} c=${i===0?3:i} size="sm"/><span className="sb-name">${name(pid)}</span><div className="bar"><span style=${{width:pct+'%'}}></span></div><span className=${'sb-total '+(t<0?'neg':'')}>${fmtNum(t)}</span></li>`})}</ol>
+    ${canEdit&&!fin&&html`<section className="block entry"><h2 className="block-title">الجولة ${rounds.length+1}</h2><${RoundForm} key=${'new'+rounds.length} players=${s.players} joker=${s.joker} label="سجّل الجولة" onSubmit=${(w,sc)=>act.addRound(s,w,sc)}/></section>`}
+    <section className="block"><h2 className="block-title">سجل الجولات</h2>
+      ${rounds.length===0?html`<p className="muted">لم تُسجَّل أي جولة بعد.</p>`:html`<div className="table-wrap"><table className="rounds">
+        <thead><tr><th>#</th>${s.players.map(pid=>html`<th key=${pid}>${name(pid)}</th>`)}${canEdit&&html`<th aria-label="إجراءات"></th>`}</tr></thead>
+        <tbody>${rounds.map(r=>html`<tr key=${r.id}><td className="rn">${r.no}</td>${s.players.map(pid=>{const sc=(r.scores||{})[pid];const w=r.winner===pid;return html`<td key=${pid} className=${w?'w':''}><span className=${'num '+(w?'pos':sc&&sc.points<0?'neg':'')}>${sc?fmtSigned(sc.points):'—'}</span>${sc&&sc.jokers>0&&html`<small className="jk">جوكر ${sc.jokers}</small>`}</td>`})}
+          ${canEdit&&html`<td><div className="acts"><button className="icon-btn" onClick=${()=>setEditR(r)} aria-label=${'تعديل الجولة '+r.no}>✎</button><button className="icon-btn" onClick=${()=>delRound(r)} aria-label=${'حذف الجولة '+r.no}>✕</button></div></td>`}</tr>`)}</tbody>
+        <tfoot><tr><td>المجموع</td>${s.players.map(pid=>html`<td key=${pid}><b className=${'num '+((ev.totals[pid]||0)<0?'neg':'gold-t')}>${fmtNum(ev.totals[pid])}</b></td>`)}${canEdit&&html`<td></td>`}</tr></tfoot></table></div>`}</section>
+    <${Modal} open=${!!editR} onClose=${()=>setEditR(null)} title=${'تعديل الجولة '+(editR?editR.no:'')}>
+      ${editR&&html`<${RoundForm} key=${editR.id} players=${s.players} joker=${s.joker} initWinner=${editR.winner} init=${initFor(editR)} label="حفظ التعديل" onSubmit=${async(w,sc)=>{const ok=await act.updateRound(s,editR.id,w,sc);if(ok)setEditR(null);return ok}} onCancel=${()=>setEditR(null)}/>`}<//>
+    <${Modal} open=${!!meta} onClose=${()=>setMeta(null)} title="تعديل الجلسة">
+      ${meta&&html`<label className="field"><span>التاريخ والوقت</span><input type="datetime-local" value=${meta.when} onChange=${e=>setMeta({...meta,when:e.target.value})}/></label>
+      <label className="field"><span>الموسم</span><select value=${meta.season} onChange=${e=>setMeta({...meta,season:e.target.value})}><option value="">بدون موسم</option>${data.seasons.map(x=>html`<option key=${x.id} value=${x.id}>${x.name}</option>`)}</select></label>
+      <label className="field"><span>ملاحظة</span><input value=${meta.notes} onChange=${e=>setMeta({...meta,notes:e.target.value})} maxLength="80"/></label>
+      <div className="modal-actions"><button className="btn gold" onClick=${()=>act.saveSession({...s,played_at:new Date(meta.when).toISOString(),notes:meta.notes.trim()||null,season_id:meta.season||null}).then(ok=>ok&&setMeta(null))}>حفظ التغييرات</button>
+        <button className="btn ghost danger" onClick=${()=>{if(confirm('حذف الجلسة وكل جولاتها نهائياً؟'))act.deleteSession(s.id).then(ok=>{if(ok){setMeta(null);go('sessions')}})}}>حذف الجلسة</button></div>`}<//>
+  </div>`;
+}
+
+function Leaderboard(){
+  const {data,activeSeason}=useApp();
+  const [sid,setSid]=useState(activeSeason?activeSeason.id:'');const [period,setPeriod]=useState('all');const [key,setKey]=useState('wins');const [metric,setMetric]=useState('net');
+  const sc={seasonId:sid||undefined,period};
+  const board=useMemo(()=>rank(allStats(data,sc),key),[data,sid,period,key]);
+  const top=board.slice(0,8);
+  const rows=useMemo(()=>progress(data,sc,top.map(s=>s.player.id)),[data,sid,period,top.map(s=>s.player.id).join()]);
+  const leader=board[0];const head=s=>key==='wins'?s.wins:key==='winRate'?fmtPct(s.winRate):fmtSigned(s.net);
+  return html`<div className="page"><h1 className="page-title">لوحة الصدارة</h1>
+    <${ScopeBar} seasonId=${sid} onSeason=${setSid} period=${period} onPeriod=${setPeriod}/>
+    <${Seg} value=${key} onChange=${setKey} options=${[{value:'wins',label:'عدد الفوز'},{value:'winRate',label:'نسبة الفوز'},{value:'net',label:'مجموع النقاط'}]}/>
+    ${board.length===0?html`<${Empty} title="لا توجد نتائج في هذه الفترة"/>`:html`
+      <a href=${'#player-'+leader.player.id} className="champion"><span className="crown" aria-hidden="true">♛</span><div className="grow"><span className="muted small">المتصدّر</span><strong>${leader.player.name}</strong><span className="muted small">${leader.sessions} جلسة — أطول سلسلة ${leader.longest}</span></div><${Tile} v=${head(leader)} c=${3} size="lg"/></a>
+      <${Board} list=${board} hl=${key}/>
+      ${rows.length>1&&html`<section className="block"><div className="block-head"><h2 className="block-title">تطور المستوى</h2><${Seg} value=${metric} onChange=${setMetric} options=${[{value:'net',label:'الصافي'},{value:'wins',label:'الانتصارات'}]}/></div>
+        <${LineChart} rows=${rows} signed=${metric==='net'} series=${top.map((s,i)=>({key:metric==='net'?s.player.id:'w_'+s.player.id,color:COLORS[i%COLORS.length],label:s.player.name}))}/></section>`}`}
+  </div>`;
+}
+
+function Compare(){
+  const {data}=useApp();const players=data.players.filter(p=>!p.archived);
+  const [a,setA]=useState(players[0]?players[0].id:'');const [b,setB]=useState(players[1]?players[1].id:'');
+  const [sid,setSid]=useState('');const [period,setPeriod]=useState('all');const sc={seasonId:sid||undefined,period};
+  const stats=useMemo(()=>new Map(allStats(data,sc,true).map(s=>[s.player.id,s])),[data,sid,period]);
+  const h=useMemo(()=>a&&b&&a!==b?headToHead(data,sc,a,b):null,[data,a,b,sid,period]);
+  if(players.length<2)return html`<div className="page"><${Empty} title="تحتاج لاعبَين على الأقل للمقارنة"/></div>`;
+  const sa=stats.get(a),sb=stats.get(b);const cmp=(x,y)=>x>y?'a':y>x?'b':null;
+  const Row=(l,x,y,bt)=>html`<div className="cmp-row" key=${l}><span className=${'cmp-v '+(bt==='a'?'win':'')}>${x}</span><span className="cmp-l">${l}</span><span className=${'cmp-v '+(bt==='b'?'win':'')}>${y}</span></div>`;
+  return html`<div className="page narrow"><h1 className="page-title">مقارنة مباشرة</h1>
+    <div className="cmp-pick"><select value=${a} onChange=${e=>setA(e.target.value)} aria-label="اللاعب الأول">${players.map(p=>html`<option key=${p.id} value=${p.id}>${p.name}</option>`)}</select><span className="vs">ضد</span><select value=${b} onChange=${e=>setB(e.target.value)} aria-label="اللاعب الثاني">${players.map(p=>html`<option key=${p.id} value=${p.id}>${p.name}</option>`)}</select></div>
+    <${ScopeBar} seasonId=${sid} onSeason=${setSid} period=${period} onPeriod=${setPeriod}/>
+    ${a===b?html`<p className="muted">اختر لاعبَين مختلفين.</p>`:h&&sa&&sb&&html`
+      <section className="block"><h2 className="block-title">وجهاً لوجه</h2>${h.shared===0?html`<p className="muted">لم يلتقيا في أي جلسة خلال هذه الفترة.</p>`:html`
+        <div className="h2h"><div className="h2h-side"><b>${h.aWins}</b><span>${sa.player.name}</span></div><div className="h2h-mid"><span>${h.shared} جلسة مشتركة</span>${h.others>0&&html`<small>فاز غيرهما ${h.others}</small>`}</div><div className="h2h-side"><b>${h.bWins}</b><span>${sb.player.name}</span></div></div>
+        <div className="cmp">${Row('جولات فاز بها',h.aRW,h.bRW,cmp(h.aRW,h.bRW))}${Row('نقاط في الجلسات المشتركة',fmtSigned(h.aP),fmtSigned(h.bP),cmp(h.aP,h.bP))}</div>`}</section>
+      <section className="block"><h2 className="block-title">الإحصائيات العامة</h2><div className="cmp">
+        ${Row('الجلسات',sa.sessions,sb.sessions,null)}${Row('الفوز',sa.wins,sb.wins,cmp(sa.wins,sb.wins))}${Row('نسبة الفوز',fmtPct(sa.winRate),fmtPct(sb.winRate),cmp(sa.winRate,sb.winRate))}
+        ${Row('الصافي',fmtSigned(sa.net),fmtSigned(sb.net),cmp(sa.net,sb.net))}${Row('متوسط الجولة',fmtAvg(sa.avg),fmtAvg(sb.avg),cmp(sa.avg,sb.avg))}
+        ${Row('أطول سلسلة',sa.longest,sb.longest,cmp(sa.longest,sb.longest))}${Row('أفضل جولة',sa.best??'—',sb.best??'—',cmp(sa.best||0,sb.best||0))}</div></section>`}
+  </div>`;
+}
+
+function Seasons(){
+  const {data,canEdit,act}=useApp();const [neu,setNeu]=useState(null);const [edit,setEdit]=useState(null);
+  const list=[...data.seasons].sort((a,b)=>b.start_date.localeCompare(a.start_date));
+  return html`<div className="page"><div className="page-head"><h1 className="page-title">المواسم</h1>${canEdit&&html`<button className="btn gold" onClick=${()=>setNeu({name:'موسم '+(list.length+1),start:today(),activate:true})}>موسم جديد</button>`}</div>
+    ${list.length===0?html`<${Empty} title="لا توجد مواسم"><p className="muted">المواسم تفصل الإحصائيات لفترات مستقلة، مثل موسم الشتاء أو موسم رمضان.</p><//>`:html`<ul className="list">${list.map(s=>{
+      const n=data.sessions.filter(x=>x.season_id===s.id).length;const champ=rank(allStats(data,{seasonId:s.id}),'wins')[0];
+      return html`<li key=${s.id} className=${'card '+(s.is_active?'active':'')}><a href=${'#season-'+s.id} className="card-main"><div className="grow"><strong>${s.name}</strong><span className="muted small">${fmtDate(s.start_date)} — ${s.end_date?fmtDate(s.end_date):'جارٍ'} — ${n} جلسة</span></div>${s.is_active?html`<span className="badge live">الحالي</span>`:champ&&html`<span className="badge win">♛ ${champ.player.name}</span>`}</a>
+        ${canEdit&&html`<div className="row-actions">${s.is_active?html`<button className="btn ghost sm" onClick=${()=>confirm('إنهاء '+s.name+'؟')&&act.endSeason(s)}>إنهاء</button>`:html`<button className="btn ghost sm" onClick=${()=>act.activateSeason(s)}>تفعيل</button>`}<button className="btn ghost sm" onClick=${()=>setEdit({...s})}>تعديل</button></div>`}</li>`})}</ul>`}
+    <${Modal} open=${!!neu} onClose=${()=>setNeu(null)} title="موسم جديد">${neu&&html`
+      <label className="field"><span>اسم الموسم</span><input value=${neu.name} onChange=${e=>setNeu({...neu,name:e.target.value})} maxLength="40"/></label>
+      <label className="field"><span>تاريخ البداية</span><input type="date" value=${neu.start} onChange=${e=>setNeu({...neu,start:e.target.value})}/></label>
+      <label className="check"><input type="checkbox" checked=${neu.activate} onChange=${e=>setNeu({...neu,activate:e.target.checked})}/> اجعله الموسم الحالي (تُسجَّل فيه الجلسات الجديدة)</label>
+      <div className="modal-actions"><button className="btn gold" disabled=${!neu.name.trim()} onClick=${()=>act.createSeason(neu.name.trim(),neu.start,neu.activate).then(ok=>ok&&setNeu(null))}>أنشئ الموسم</button></div>`}<//>
+    <${Modal} open=${!!edit} onClose=${()=>setEdit(null)} title="تعديل الموسم">${edit&&html`
+      <label className="field"><span>الاسم</span><input value=${edit.name} onChange=${e=>setEdit({...edit,name:e.target.value})}/></label>
+      <label className="field"><span>البداية</span><input type="date" value=${edit.start_date} onChange=${e=>setEdit({...edit,start_date:e.target.value})}/></label>
+      <label className="field"><span>النهاية</span><input type="date" value=${edit.end_date||''} onChange=${e=>setEdit({...edit,end_date:e.target.value||null})}/></label>
+      <div className="modal-actions"><button className="btn gold" onClick=${()=>act.saveSeason(edit).then(ok=>ok&&setEdit(null))}>حفظ التغييرات</button>
+        <button className="btn ghost danger" onClick=${()=>confirm('حذف الموسم؟ ستبقى جلساته محفوظة لكن بدون موسم.')&&act.deleteSeason(edit.id).then(ok=>ok&&setEdit(null))}>حذف الموسم</button></div>`}<//>
+  </div>`;
+}
+
+function SeasonReport({id}){
+  const {data,name,act,canDownload}=useApp();const season=data.seasons.find(s=>s.id===id);
+  const board=useMemo(()=>rank(allStats(data,{seasonId:id},true),'wins'),[data,id]);
+  const ov=useMemo(()=>overview(data,{seasonId:id}),[data,id]);const sd=useMemo(()=>scope(data,{seasonId:id}),[data,id]);
+  if(!season)return html`<div className="page"><${Empty} title="الموسم غير موجود"><a href="#seasons" className="btn ghost sm">المواسم</a><//></div>`;
+  const champ=board[0];const topS=[...board].sort((a,b)=>b.net-a.net)[0];const str=[...board].sort((a,b)=>b.longest-a.longest)[0];const br=[...board].sort((a,b)=>(b.best||0)-(a.best||0))[0];
+  return html`<div className="page"><div className="page-head"><div><h1 className="page-title">تقرير ${season.name}</h1><p className="muted small" style=${{margin:0}}>${fmtDate(season.start_date)} — ${season.end_date?fmtDate(season.end_date):'جارٍ'}</p></div>
+    ${canDownload&&html`<button className="btn gold sm" onClick=${()=>act.exportExcel(season)}>تصدير Excel</button>`}</div>
+    ${board.length===0?html`<${Empty} title="لا توجد جلسات في هذا الموسم"/>`:html`
+      <div className="winner-banner"><${Tile} v="♛" c=${3} size="lg"/><div><span className="muted small">${season.is_active?'متصدّر الموسم حتى الآن':'بطل الموسم'}</span><strong>${champ.player.name}</strong><span className="muted small">${champ.wins} فوز من ${champ.finished} — ${fmtPct(champ.winRate)}</span></div></div>
+      <div className="stats-row"><${Stat} label="جلسة" value=${ov.sessions}/><${Stat} label="جولة" value=${ov.rounds}/><${Stat} label="لاعب" value=${board.length}/><${Stat} label="أعلى جولة" value=${fmtNum(ov.biggest)} tone="gold"/></div>
+      <section className="block"><h2 className="block-title">ألقاب الموسم</h2><div className="awards">
+        <div><span className="muted small">الأعلى نقاطاً</span><b>${topS.player.name}</b><span className="num pos">${fmtSigned(topS.net)}</span></div>
+        <div><span className="muted small">أطول سلسلة انتصارات</span><b>${str.player.name}</b><span className="num">${str.longest}</span></div>
+        <div><span className="muted small">أكبر جولة</span><b>${br.player.name}</b><span className="num pos">${fmtSigned(br.best||0)}</span></div></div></section>
+      <section className="block"><h2 className="block-title">الترتيب النهائي</h2><div className="table-wrap"><table className="rounds report-table">
+        <thead><tr><th>#</th><th>اللاعب</th><th>جلسات</th><th>فوز</th><th>خسارة</th><th>النسبة</th><th>جولات</th><th>إيجابي</th><th>سلبي</th><th>الصافي</th><th>المتوسط</th><th>أطول سلسلة</th></tr></thead>
+        <tbody>${board.map((s,i)=>html`<tr key=${s.player.id}><td className="rn">${i+1}</td><td><a href=${'#player-'+s.player.id}>${s.player.name}</a></td><td>${s.sessions}</td><td><b className="gold-t">${s.wins}</b></td><td>${s.losses}</td><td>${fmtPct(s.winRate)}</td><td>${s.rounds}</td><td className="num pos">${fmtSigned(s.positive)}</td><td className="num neg">${fmtNum(s.negative)}</td><td className=${'num '+toneOf(s.net)}>${fmtSigned(s.net)}</td><td>${fmtAvg(s.avg)}</td><td>${s.longest}</td></tr>`)}</tbody></table></div></section>
+      <section className="block"><h2 className="block-title">جلسات الموسم</h2><ul className="list">${[...sd.sessions].reverse().map(s=>html`<li key=${s.id}><a className="row-link" href=${'#session-'+s.id}><span className="date-chip">${fmtShort(s.played_at)}</span><span className="grow">${s.status==='finished'?html`<span>فاز <b className="gold-t">${name(s.winner_id)}</b></span>`:html`<span className="muted">جارية</span>`}</span><span className="muted small">${(s.rounds||[]).length} جولة</span></a></li>`)}</ul></section>`}
+  </div>`;
+}
+
+function Rules(){
+  const {data,canEdit,act,canDownload}=useApp();
+  const [t,setT]=useState(String(data.settings.target));const [j,setJ]=useState(String(data.settings.joker));
+  useEffect(()=>{setT(String(data.settings.target));setJ(String(data.settings.joker))},[data.settings.target,data.settings.joker]);
+  return html`<div className="page narrow"><h1 className="page-title">القواعد والبيانات</h1>
+    <section className="block"><h2 className="block-title">قواعد الديوانية</h2><ul className="rules">
+      <li>الفائز بالجولة يأخذ مجموع أحجار الخاسرين بالموجب.</li><li>كل خاسر يُسجَّل عليه مجموع أحجاره المتبقية بالسالب.</li>
+      <li>الجوكر المتبقي في يد الخاسر = ${data.settings.joker} نقطة.</li><li>فائز الجلسة أول من يصل ${data.settings.target} نقطة. إذا وصل أكثر من لاعب في نفس الجولة يفوز الأعلى مجموعاً.</li></ul>
+      ${canEdit&&html`<div className="form-grid two"><label className="field"><span>نقاط الفوز بالجلسة</span><input inputMode="numeric" value=${t} onChange=${e=>setT(arDigits(e.target.value))}/></label><label className="field"><span>قيمة الجوكر</span><input inputMode="numeric" value=${j} onChange=${e=>setJ(arDigits(e.target.value))}/></label>
+        <button className="btn gold" disabled=${!(Number(t)>0)} onClick=${()=>act.saveSettings({target:Number(t),joker:Number(j||0)})}>حفظ القواعد</button><p className="muted small" style=${{margin:0}}>التغيير يُطبَّق على الجلسات الجديدة فقط.</p></div>`}</section>
+    <section className="block"><h2 className="block-title">التصدير</h2>${canDownload?html`<button className="btn ghost" style=${{alignSelf:'flex-start'}} onClick=${()=>act.exportExcel(null)}>تصدير كل البيانات إلى Excel</button><p className="muted small" style=${{margin:0}}>لتقرير موسم محدد افتح <a href="#seasons" className="link">المواسم</a> ثم اختر الموسم.</p>`:html`<p className="muted small">التصدير غير متاح في هذا العرض.</p>`}</section>
+    <section className="block"><h2 className="block-title">الصلاحيات</h2><p className="muted small" style=${{margin:0}}>${canEdit?'أنت مشرف: تستطيع إضافة اللاعبين وتسجيل النتائج.':'أنت في وضع العرض. التسجيل للمشرف فقط.'}</p>${canEdit?html`<button className="btn ghost danger" style=${{alignSelf:'flex-start'}} onClick=${act.signOut}>تسجيل الخروج</button>`:html`<a href="#login" className="btn gold" style=${{alignSelf:'flex-start'}}>دخول المشرف</a>`}</section>
+    <section className="block"><h2 className="block-title">على شاشة الجوال</h2><p className="muted small" style=${{margin:0}}>آيفون: افتح الرابط في Safari ← المشاركة ← «إضافة إلى الشاشة الرئيسية». أندرويد: Chrome ← ⋮ ← «تثبيت التطبيق».</p></section>
+  </div>`;
+}
+
+function More(){
+  return html`<div className="page"><h1 className="page-title">المزيد</h1><div className="list">${EXTRA.map(n=>html`<a key=${n.h} href=${'#'+n.h} className="more-item"><span className="nav-ic">${n.i}</span>${n.l}</a>`)}</div></div>`;
+}
+
+/* ================= تسجيل دخول المشرف ================= */
+function Login(){
+  const {act,canEdit,signedIn}=useApp();
+  const [email,setEmail]=useState('');const [pw,setPw]=useState('');const [busy,setBusy]=useState(false);const [msg,setMsg]=useState(null);
+  if(canEdit)return html`<div className="page narrow"><h1 className="page-title">أنت مسجّل كمشرف</h1><a href="#home" className="btn gold" style=${{alignSelf:'flex-start'}}>الرئيسية</a></div>`;
+  const submit=async e=>{e.preventDefault();setBusy(true);setMsg(null);const r=await act.signIn(email.trim(),pw);setBusy(false);if(r)setMsg(r);else go('home')};
+  return html`<div className="page narrow" style=${{margin:'12px auto 0'}}>
+    <div style=${{display:'flex',gap:8,justifyContent:'center'}}><${Tile} v="1" c=${0}/><${Tile} v="3" c=${1}/><${Tile} v="7" c=${3}/></div>
+    <h1 className="page-title" style=${{textAlign:'center'}}>دخول المشرف</h1>
+    <p className="muted" style=${{textAlign:'center',margin:0}}>العرض متاح للجميع، وتسجيل النتائج للمشرف فقط.</p>
+    ${signedIn&&!canEdit&&html`<div className="banner err">هذا الحساب ليس مشرفاً. أضفه إلى جدول admins في Supabase. <button className="link" onClick=${act.signOut}>تسجيل الخروج</button></div>`}
+    <form className="form-grid" onSubmit=${submit}>
+      <label className="field"><span>البريد الإلكتروني</span><input type="email" autoComplete="email" dir="ltr" required value=${email} onChange=${e=>setEmail(e.target.value)}/></label>
+      <label className="field"><span>كلمة المرور</span><input type="password" autoComplete="current-password" dir="ltr" required value=${pw} onChange=${e=>setPw(e.target.value)}/></label>
+      ${msg&&html`<div className="banner err">${msg}</div>`}
+      <button className="btn gold wide" disabled=${busy}>${busy?'جارٍ الدخول…':'دخول'}</button>
+    </form></div>`;
+}
+
+/* ================= التطبيق والبيانات (Supabase) ================= */
+const MAIN=[{h:'home',l:'الرئيسية',i:'◈'},{h:'sessions',l:'الجلسات',i:'▦'},{h:'leaderboard',l:'الصدارة',i:'♛'},{h:'players',l:'اللاعبون',i:'☗'}];
+const EXTRA=[{h:'compare',l:'المقارنة',i:'⇄'},{h:'seasons',l:'المواسم',i:'◷'},{h:'rules',l:'القواعد والبيانات',i:'⚙'}];
+const readHash=()=>decodeURIComponent((location.hash||'').replace(/^#/,''))||'home';
+const CFG=window.DIWANIYA||{};
+const SB=(CFG.SUPABASE_URL&&CFG.SUPABASE_KEY&&window.supabase)?window.supabase.createClient(CFG.SUPABASE_URL,CFG.SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true}}):null;
+
+async function fetchAll(table,order){
+  const out=[];let from=0;const page=1000;
+  for(;;){let q=SB.from(table).select('*').range(from,from+page-1);if(order)q=q.order(order,{ascending:true});
+    const {data,error}=await q;if(error)throw error;out.push(...(data||[]));if(!data||data.length<page)break;from+=page}
+  return out;
+}
+const SESSION_COLS=['id','season_id','played_at','target','joker','players','rounds','notes','status','winner_id','decided_round','finished_at','created_at'];
+
+function App(){
+  const [route,setRoute]=useState(readHash());
+  const [state,setState]=useState(null);const [err,setErr]=useState(null);
+  const [authUser,setAuthUser]=useState(null);const [canEdit,setCanEdit]=useState(false);
+  const [toast,setToast]=useState(null);const tRef=useRef(null);const rRef=useRef(null);
+
+  useEffect(()=>{const h=()=>{setRoute(readHash());window.scrollTo(0,0)};window.addEventListener('hashchange',h);return()=>window.removeEventListener('hashchange',h)},[]);
+
+  const reload=async()=>{
+    try{
+      const [players,seasons,sessions,settings]=await Promise.all([fetchAll('players','created_at'),fetchAll('seasons','start_date'),fetchAll('sessions','played_at'),fetchAll('settings')]);
+      const st=settings[0]||{};
+      setState({players,seasons,sessions,settings:{target:Number(st.target)||300,joker:st.joker!=null?Number(st.joker):30}});setErr(null);
+    }catch(e){setErr('تعذّر تحميل البيانات. تحقق من الإنترنت أو من إعداد Supabase.')}
+  };
+  const checkAdmin=async u=>{if(!u){setCanEdit(false);return}const {data}=await SB.from('admins').select('user_id').eq('user_id',u.id).maybeSingle();setCanEdit(!!data)};
+
+  useEffect(()=>{
+    if(!SB)return;
+    reload();
+    SB.auth.getSession().then(({data})=>{const u=data.session?data.session.user:null;setAuthUser(u);checkAdmin(u)});
+    const {data:sub}=SB.auth.onAuthStateChange((_e,sess)=>{const u=sess?sess.user:null;setAuthUser(u);checkAdmin(u)});
+    const schedule=()=>{clearTimeout(rRef.current);rRef.current=setTimeout(reload,350)};
+    const ch=SB.channel('diwaniya');['players','seasons','sessions','settings'].forEach(t=>ch.on('postgres_changes',{event:'*',schema:'public',table:t},schedule));ch.subscribe();
+    const vis=()=>document.visibilityState==='visible'&&schedule();document.addEventListener('visibilitychange',vis);
+    return()=>{sub.subscription.unsubscribe();SB.removeChannel(ch);document.removeEventListener('visibilitychange',vis)};
+  },[]);
+
+  const data=useMemo(()=>state?{
+    players:state.players,seasons:state.seasons.map(s=>({end_date:null,...s})),
+    sessions:state.sessions.map(s=>({...s,rounds:s.rounds||[],players:s.players||[]})),settings:state.settings
+  }:null,[state]);
+  const nameMap=useMemo(()=>new Map((data?data.players:[]).map(p=>[p.id,p.name])),[data]);
+  const name=id=>id?(nameMap.get(id)||'—'):'—';
+  const activeSeason=data?(data.seasons.find(s=>s.is_active)||null):null;
+
+  const showToast=m=>{setToast(m);clearTimeout(tRef.current);tRef.current=setTimeout(()=>setToast(null),3200)};
+  const run=async fn=>{try{const r=await fn();if(r&&r.error)throw r.error;await reload();return true}catch(e){
+    const m=(e&&e.message)||'';showToast(/row-level security|permission/i.test(m)?'ليست لديك صلاحية التعديل. سجّل الدخول كمشرف.':/duplicate/i.test(m)?'الاسم مستخدم من قبل.':'تعذّر الحفظ، حاول مرة أخرى.');return false}};
+  const ok=r=>{if(r&&r.error)throw r.error;return r};
+  const nowISO=()=>new Date().toISOString();
+  const writeSession=s=>{const f=finalize(s);const row={};SESSION_COLS.forEach(k=>row[k]=f[k]===undefined?null:f[k]);if(!row.created_at)row.created_at=nowISO();return SB.from('sessions').upsert(row)};
+
+  const act={
+    toast:showToast,
+    signIn:async(email,pw)=>{const {error}=await SB.auth.signInWithPassword({email,password:pw});return error?(/Invalid login/i.test(error.message)?'البريد أو كلمة المرور غير صحيحة.':error.message):null},
+    signOut:async()=>{await SB.auth.signOut();go('home')},
+    addPlayer:n=>run(()=>SB.from('players').insert({id:uid(),name:n,archived:false,created_at:nowISO()})),
+    renamePlayer:(id,n)=>run(()=>SB.from('players').update({name:n}).eq('id',id)),
+    removePlayer:(id,has)=>run(()=>has?SB.from('players').update({archived:true}).eq('id',id):SB.from('players').delete().eq('id',id)),
+    restorePlayer:id=>run(()=>SB.from('players').update({archived:false}).eq('id',id)),
+    createSeason:(n,start,activate)=>run(async()=>{
+      if(activate)ok(await SB.from('seasons').update({is_active:false}).eq('is_active',true));
+      return SB.from('seasons').insert({id:uid(),name:n,start_date:start,end_date:null,is_active:!!activate,created_at:nowISO()})}),
+    activateSeason:s=>run(async()=>{ok(await SB.from('seasons').update({is_active:false}).eq('is_active',true));return SB.from('seasons').update({is_active:true,end_date:null}).eq('id',s.id)}),
+    endSeason:s=>run(()=>SB.from('seasons').update({is_active:false,end_date:today()}).eq('id',s.id)),
+    saveSeason:s=>run(()=>SB.from('seasons').update({name:s.name.trim()||'موسم',start_date:s.start_date,end_date:s.end_date||null}).eq('id',s.id)),
+    deleteSeason:id=>run(()=>SB.from('seasons').delete().eq('id',id)),
+    createSession:async(players,at,notes)=>{const id=uid();const r=await run(()=>writeSession({id,season_id:activeSeason?activeSeason.id:null,played_at:at,notes:notes.trim()||null,target:data.settings.target,joker:data.settings.joker,players,rounds:[],created_at:nowISO()}));return r?id:null},
+    saveSession:s=>run(()=>writeSession(s)),
+    deleteSession:id=>run(()=>SB.from('sessions').delete().eq('id',id)),
+    addRound:(s,w,scores)=>run(()=>{const no=(s.rounds||[]).reduce((m,r)=>Math.max(m,r.no),0)+1;return writeSession({...s,rounds:[...(s.rounds||[]),{id:uid(),no,winner:w,scores,at:nowISO()}]})}),
+    updateRound:(s,rid,w,scores)=>run(()=>writeSession({...s,rounds:s.rounds.map(r=>r.id===rid?{...r,winner:w,scores}:r)})),
+    deleteRound:(s,rid)=>run(()=>{const rest=s.rounds.filter(r=>r.id!==rid).sort((a,b)=>a.no-b.no).map((r,i)=>({...r,no:i+1}));return writeSession({...s,rounds:rest})}),
+    saveSettings:v=>run(()=>SB.from('settings').upsert({id:1,target:v.target,joker:v.joker})).then(r=>r&&showToast('تم حفظ القواعد.')),
+    exportExcel:season=>{
+      try{
+        const sid=season?season.id:undefined;
+        const stats=rank(allStats(data,{seasonId:sid},true),'wins').map((s,i)=>({'الترتيب':i+1,'اللاعب':s.player.name,'الجلسات':s.sessions,'الفوز':s.wins,'الخسارة':s.losses,'نسبة الفوز %':Math.round(s.winRate*100),'الجولات':s.rounds,'جولات فاز بها':s.roundWins,'النقاط الإيجابية':s.positive,'النقاط السلبية':s.negative,'الصافي':s.net,'متوسط الجولة':Number(s.avg.toFixed(1)),'أطول سلسلة':s.longest,'السلسلة الحالية':s.streak,'أفضل جولة':s.best??'','أسوأ جولة':s.worst??''}));
+        const sd=scope(data,{seasonId:sid});const sn=id=>(data.seasons.find(x=>x.id===id)||{}).name||'';
+        const sess=sd.sessions.map(s=>{const t=evaluateSession(s).totals;return {'التاريخ':fmtDate(s.played_at),'الوقت':fmtTime(s.played_at),'الموسم':sn(s.season_id),'الحالة':s.status==='finished'?'منتهية':'جارية','الفائز':s.winner_id?name(s.winner_id):'','عدد الجولات':(s.rounds||[]).length,'المجاميع':s.players.map(p=>name(p)+': '+(t[p]||0)).join(' | '),'ملاحظات':s.notes||''}});
+        const rds=[];sd.sessions.forEach(s=>[...(s.rounds||[])].sort((a,b)=>a.no-b.no).forEach(r=>Object.entries(r.scores||{}).forEach(([pid,x])=>rds.push({'تاريخ الجلسة':fmtDate(s.played_at),'الجولة':r.no,'اللاعب':name(pid),'فائز الجولة':r.winner===pid?'نعم':'','مجموع الأحجار':x.tiles,'الجواكر':x.jokers,'النقاط':x.points}))));
+        const sh=rows=>{const ws=XLSX.utils.json_to_sheet(rows.length?rows:[{'':'لا توجد بيانات'}]);ws['!cols']=Object.keys(rows[0]||{'':''}).map(k=>({wch:Math.max(12,k.length+4)}));return ws};
+        const wb=XLSX.utils.book_new();wb.Workbook={Views:[{RTL:true}]};
+        if(season)XLSX.utils.book_append_sheet(wb,sh([{'البند':'الموسم','القيمة':season.name},{'البند':'البداية','القيمة':season.start_date},{'البند':'النهاية','القيمة':season.end_date||'جارٍ'},{'البند':'عدد الجلسات','القيمة':sd.sessions.length},{'البند':'عدد الجولات','القيمة':sd.rounds.length},{'البند':'البطل','القيمة':stats[0]?stats[0]['اللاعب']:'—'}]),'الملخص');
+        XLSX.utils.book_append_sheet(wb,sh(stats),'الترتيب');XLSX.utils.book_append_sheet(wb,sh(sess),'الجلسات');XLSX.utils.book_append_sheet(wb,sh(rds),'الجولات');
+        if(!season)XLSX.utils.book_append_sheet(wb,sh(data.seasons.map(s=>({'الموسم':s.name,'البداية':s.start_date,'النهاية':s.end_date||'','نشط':s.is_active?'نعم':''}))),'المواسم');
+        XLSX.writeFile(wb,(season?'تقرير-'+season.name:'ديوانية-الطاولة-'+today())+'.xlsx');
+      }catch(e){showToast('تعذّر تصدير الملف.')}
+    }
+  };
+
+  if(!SB)return html`<div className="page narrow" style=${{margin:'60px auto',padding:'0 16px',textAlign:'center'}}><h1 className="page-title">ديوانية الطاولة</h1><p className="muted">لم يتم ربط قاعدة البيانات بعد. افتح ملف index.html وضع رابط Supabase والمفتاح في أعلى الملف.</p></div>`;
+  if(!data)return html`<div><div className="loader"><${Tile} v="1" c=${0} size="sm"/><${Tile} v="2" c=${1} size="sm"/><${Tile} v="3" c=${3} size="sm"/></div>${err&&html`<p className="muted" style=${{textAlign:'center',padding:'0 16px'}}>${err} <button className="link" onClick=${reload}>إعادة المحاولة</button></p>`}</div>`;
+
+  const ctx={data,canEdit,act,name,activeSeason,canDownload:true,signedIn:!!authUser};
+  let page;const [base,...restId]=route.split('-');const rid=restId.join('-');
+  if(base==='session'&&rid)page=html`<${SessionDetail} id=${rid}/>`;
+  else if(base==='player'&&rid)page=html`<${PlayerProfile} id=${rid}/>`;
+  else if(base==='season'&&rid)page=html`<${SeasonReport} id=${rid}/>`;
+  else page=({'home':html`<${Dashboard}/>`,'sessions':html`<${Sessions}/>`,'new-session':canEdit?html`<${NewSession}/>`:html`<${Login}/>`,'leaderboard':html`<${Leaderboard}/>`,'players':html`<${Players}/>`,'compare':html`<${Compare}/>`,'seasons':html`<${Seasons}/>`,'rules':html`<${Rules}/>`,'more':html`<${More}/>`,'login':html`<${Login}/>`})[route]||html`<${Dashboard}/>`;
+  const navBase=base==='session'||route==='new-session'?'sessions':base==='player'?'players':base==='season'?'seasons':route;
+  const isOn=h=>navBase===h;
+  const who=canEdit?html`<span className="muted small">مشرف</span>`:html`<a href="#login" className="btn ghost sm">دخول</a>`;
+
+  return html`<${Ctx.Provider} value=${ctx}><div className="shell">
+    <aside className="side"><a href="#home" className="brand"><${Tile} v="7" c=${3} size="sm"/><span>ديوانية الطاولة</span></a>
+      <nav>${[...MAIN,...EXTRA].map(n=>html`<a key=${n.h} href=${'#'+n.h} className=${'side-link '+(isOn(n.h)?'on':'')}><span className="nav-ic">${n.i}</span>${n.l}</a>`)}</nav>
+      <div className="side-foot">${activeSeason&&html`<span className="pill">${activeSeason.name}</span>`}${who}</div></aside>
+    <header className="topbar"><a href="#home" className="brand"><${Tile} v="7" c=${3} size="sm"/><span>ديوانية الطاولة</span></a>${who}</header>
+    <main className="content">${err&&html`<div className="banner err" style=${{marginBottom:12}}>${err}</div>`}${page}</main>
+    <nav className="bottom-nav">${MAIN.map(n=>html`<a key=${n.h} href=${'#'+n.h} className=${isOn(n.h)?'on':''}><span className="nav-ic">${n.i}</span><span>${n.l}</span></a>`)}<a href="#more" className=${['more','compare','seasons','rules'].includes(navBase)?'on':''}><span className="nav-ic">⋯</span><span>المزيد</span></a></nav>
+    ${toast&&html`<div className="toast" role="status">${toast}</div>`}
+  </div><//>`;
+}
+
+if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{});
+ReactDOM.createRoot(document.getElementById('root')).render(html`<${App}/>`);
+})();
+</script>
+</body>
+</html>
